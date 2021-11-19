@@ -7,30 +7,14 @@ import (
 )
 
 func main() {
-	//fmt.Println(S(22, []int{5,4,1}))
-	//fmt.Println(s2(22, []int{5,4,1}))
-	//fmt.Println(S(10018, []int{5,4,1}))
-	//fmt.Println(s2(10018, []int{5,4,1}))
-	fmt.Println(S(1732912, []int{11,7,1}))
-	fmt.Println(s2(1732912, []int{11,7,1}))
 	fmt.Println(S(1732913, []int{11,7,1}))
 	fmt.Println(s2(1732913, []int{11,7,1}))
-	//fmt.Println(S(4, []int{5,4,1}))
-	//fmt.Println(S(1273482491342698178, []int{81,79,59,8,5,4,1}))
-
-	//fmt.Println(filterGreaterThan([]int{5,4,1}, 5))
-	//fmt.Println(filterGreaterThan([]int{5,4,1}, 4))
-	//fmt.Println(filterGreaterThan([]int{5,4,1}, 1))
-	//fmt.Println(filterGreaterThan([]int{5,4,1}, 2))
-	//fmt.Println(filterGreaterThan([]int{5,4,1}, 6))
-	//fmt.Println(filterGreaterThan([]int{5,4,1}, 0))
-
 }
 
 // S computes the smallest number of coins needed to create change for the given sum.
 // It returns a map from coin denominations to coin counts.
 // sum must be positive.
-// denoms must be monotonically decreasing, with 1 as the smallest element.
+// denoms must be in decreasing order, with 1 as the smallest element.
 
 // Essentially, S minimizes    x1 + x2 + ... + xn
 //              subject to     d1*x1 + d2*x2 + ... + dn*xn = sum
@@ -88,7 +72,7 @@ func sumValues(m map[int]int) int {
 }
 
 // filterGreaterThan creates a slice containing all elements in descendingValues that are <= maxValue.
-// descendingValues must be monotonically decreasing.
+// descendingValues must be in decreasing order.
 func filterGreaterThan(descendingValues []int, maxValue int) []int {
 	i := 0
 	for {
@@ -110,8 +94,9 @@ func pop(arr *[]int) int {
 	return first
 }
 
-// Reference implementation of S: https://www.cs.usfca.edu/~galles/visualization/DPChange.html
-// I haven't looked at it too closely, and I'm not yet confident that it's correct.
+// s2 is a standard implementation of S, for comparison.
+// It uses top-down dynamic programming.
+// It's based on https://www.cs.usfca.edu/~galles/visualization/DPChange.html
 func s2(sum int, denoms []int) map[int]int {
 	args := serializeS2Args(sum, denoms)
 	memo := s2Table[args]
